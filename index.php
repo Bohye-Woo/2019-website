@@ -15,45 +15,52 @@
 get_header();
 ?>
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main">
+    <div id="primary" class="content-area">
+        <main id="main" class="site-main">
+            <?php
+            if (have_posts()) :
 
-		<?php
-		if ( have_posts() ) :
+                if (is_home() && !is_front_page()) :
+                    ?>
+                    <header>
+                        <h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
+                    </header>
+                <?php
+                endif;
+                ?>
 
-			if ( is_home() && ! is_front_page() ) :
-				?>
-				<header>
-					<h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
-				</header>
-				<?php
-			endif;
+                <?php $the_query = new WP_Query('posts_per_page=50'); ?>
+                <?php if ($the_query->have_posts()) : ?>
+                <div id="nav-grid">
+                    <?php while ($the_query->have_posts()) : $the_query->the_post();
+                        $termsArray = get_the_terms($post->ID, "category");
+                        $termsString = "";
+                        foreach ($termsArray as $term) {
+                            $termsString .= $term->slug . ' ';
+                        }
+                        ?>
+                    <a href="<?php the_permalink(); ?>">
+                        <div class="<?php echo $termsString; ?> grid-item">
+                            <?php if (has_post_thumbnail()) {
+                                the_post_thumbnail();
+                            } ?>
+                            <div class="grid-item-desc">
+                                <div class="grid-item-desc-text"><?php the_title(); ?></div>
+                            </div>
+                        </div>
+                    </a>
+                    <?php endwhile; ?>
+            </div>
+            <?php endif; ?>
+            <?php
 
-			/* Start the Loop */
-			while ( have_posts() ) :
-				the_post();
+            else :
+                get_template_part('template-parts/content', 'none');
+            endif;
+            ?>
 
-				/*
-				 * Include the Post-Type-specific template for the content.
-				 * If you want to override this in a child theme, then include a file
-				 * called content-___.php (where ___ is the Post Type name) and that will be used instead.
-				 */
-				get_template_part( 'template-parts/content', get_post_type() );
-
-			endwhile;
-
-			the_posts_navigation();
-
-		else :
-
-			get_template_part( 'template-parts/content', 'none' );
-
-		endif;
-		?>
-
-		</main><!-- #main -->
-	</div><!-- #primary -->
+        </main><!-- #main -->
+    </div><!-- #primary -->
 
 <?php
-get_sidebar();
 get_footer();

@@ -395,7 +395,7 @@ select,
 optgroup,
 textarea {
 	color: #404040;
-	font-family: sans-serif;
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
 	font-size: 16px;
 	font-size: 1rem;
 	line-height: 1.5;
@@ -613,20 +613,16 @@ textarea {
 ## Links
 --------------------------------------------------------------*/
 a {
-	color: royalblue;
+	color: black;
 }
 
-a:visited {
-	color: purple;
-}
+/*a:visited {*/
+	/*color: purple;*/
+/*}*/
 
-a:hover, a:focus, a:active {
-	color: midnightblue;
-}
-
-a:focus {
-	outline: thin dotted;
-}
+/*a:hover, a:focus, a:active {*/
+	/*color: midnightblue;*/
+/*}*/
 
 a:hover, a:active {
 	outline: 0;
@@ -637,16 +633,33 @@ a:hover, a:active {
 --------------------------------------------------------------*/
 .main-navigation {
 	clear: both;
-	display: block;
 	float: left;
-	width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    display: table;
+    width: 100%;
+    padding: 15px 5px 15px 5px;
+    border-bottom: 1px solid lightgray;
+}
+
+.nav-container {
+    padding: 0px 35px 0px 35px;
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    z-index: 10;
+    background-color: #fdfdfd;
+    opacity: 0.98;
+    width: 100%;
 }
 
 .main-navigation ul {
-	display: none;
 	list-style: none;
 	margin: 0;
 	padding-left: 0;
+    display:table-cell;
+    text-align:center;
 }
 
 .main-navigation ul ul {
@@ -722,6 +735,34 @@ a:hover, a:active {
 	float: right;
 	text-align: right;
 	width: 50%;
+}
+
+.site-title {
+    font-weight: bold;
+    width: 250px;
+    text-decoration: none;
+}
+
+.site-title a {
+    color: black;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.3rem;
+    display: inline;
+}
+
+.nav-item {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.nav-item .nav-menu li {
+    padding-left: 40px;
+    font-size: 0.8rem;
+}
+
+.site-content {
+    padding: 61px 40px 50px 40px;
 }
 
 /*--------------------------------------------------------------
@@ -981,4 +1022,75 @@ object {
 
 .gallery-caption {
 	display: block;
+}
+
+/*--------------------------------------------------------------
+## Navigation grid
+--------------------------------------------------------------*/
+.nav-grid {}
+
+#nav-grid:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.grid-item {
+    float: left;
+    width: calc(20% - 8px);
+    border: .05rem solid #dadee4;
+    border-radius: .1rem;
+    margin-top: 10px;
+    line-height: 0;
+}
+
+.grid-item-desc {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(29, 106, 154, 0);
+    color: #fff;
+    visibility: hidden;
+    opacity: 0;
+    text-align: center;
+    vertical-align: middle;
+
+    /* transition effect. not necessary */
+    transition: all .2s;
+    -webkit-transition: all .2s;
+    -moz-transition: all .2s;
+    -o-transition: all .2s;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.grid-item-desc-text {
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: bolder;
+    padding: 10px;
+}
+
+.grid-item .wp-post-image {
+    transition: all .2s;
+    -webkit-transition: all .2s;
+    -moz-transition: all .2s;
+    -o-transition: all .2s;
+    transform: translateX(0);
+    -webkit-transform: translateX(0);
+}
+
+.grid-item:hover .grid-item-desc {
+    visibility: visible;
+    opacity: 1;
+}
+
+.grid-item:hover .wp-post-image {
+    filter: brightness(.2);
+    -webkit-filter: brightness(.2);
 }
