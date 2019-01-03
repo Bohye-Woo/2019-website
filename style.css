@@ -1027,8 +1027,6 @@ object {
 /*--------------------------------------------------------------
 ## Navigation grid
 --------------------------------------------------------------*/
-.nav-grid {}
-
 #nav-grid:after {
     content: '';
     display: block;
@@ -1093,4 +1091,30 @@ object {
 .grid-item:hover .wp-post-image {
     filter: brightness(.2);
     -webkit-filter: brightness(.2);
+}
+
+@media (max-width: 960px) {
+    .grid-item {
+        width: calc(33.3333333% - 7px);
+    }
+}
+
+@media (max-width: 840px) {
+    .grid-item {
+        width: calc(50% - 5px);
+    }
+
+    .grid-item .grid-item-desc-text {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .grid-item {
+        width: 100%;
+    }
+
+    .site-content {
+        padding: 69px 40px 50px 40px;
+    }
 }

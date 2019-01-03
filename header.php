@@ -37,6 +37,7 @@
                     'menu_class'     => 'nav-item'
                 ) );
                 ?>
+<!--                --><?php //get_search_form(); ?>
             </nav><!-- #site-navigation -->
         </div>
 	</header><!-- #masthead -->
