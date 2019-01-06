@@ -1,16 +1,16 @@
-jQuery(document).ready(function($) {
-    let $container = $('#nav-grid'); //The ID for the list with all the blog posts
-    let $grid = $container.isotope({ //Isotope options, 'item' matches the class in the PHP
-        itemSelector : '.grid-item',
-        layoutMode : 'masonry',
+jQuery(document).ready(function ($) {
+    let $container = $('#nav-grid');
+    let $grid = $container.isotope({
+        itemSelector: '.grid-item',
+        layoutMode: 'masonry',
         masonry: {
             rowHeight: 100,
             gutter: 10
         },
-        sortBy : 'random'
+        sortBy: 'random'
     });
 
-    $grid.imagesLoaded().progress( function() {
+    $grid.imagesLoaded().progress(function () {
         $grid.isotope('layout');
     });
 
@@ -18,10 +18,10 @@ jQuery(document).ready(function($) {
     let $optionSets = $('#filters'),
         $optionLinks = $optionSets.find('a');
 
-    $optionLinks.click(function(){
+    $optionLinks.click(function () {
         let $this = $(this);
         // don't proceed if already selected
-        if ( $this.hasClass('selected') ) {
+        if ($this.hasClass('selected')) {
             return false;
         }
         let $optionSet = $this.parents('#filters');
@@ -30,8 +30,25 @@ jQuery(document).ready(function($) {
 
         //When an item is clicked, sort the items.
         let selector = $(this).attr('data-filter');
-        $container.isotope({ filter: selector });
+        $container.isotope({filter: selector});
 
         return false;
+    });
+
+    $(".table-toggle").click(function () {
+        let table_slide = $(".table-slide");
+        let grid_slide = $(".grid-slide");
+
+        if (table_slide.hasClass("hidden")) {
+            table_slide.removeClass("hidden");
+            table_slide.animate({marginTop: '56px'}, 600, function () {
+                grid_slide.addClass("hidden");
+            });
+        } else {
+            grid_slide.removeClass("hidden");
+            table_slide.animate({marginTop: '-100vh'}, 600, function () {
+                table_slide.addClass("hidden");
+            });
+        }
     });
 });

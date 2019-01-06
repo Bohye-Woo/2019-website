@@ -69,6 +69,10 @@ body {
 	margin: 0;
 }
 
+body.home {
+    overflow-y: hidden;
+}
+
 /**
  * Correct the font size and margin on `h1` elements within `section` and
  * `article` contexts in Chrome, Firefox, and Safari.
@@ -395,7 +399,7 @@ select,
 optgroup,
 textarea {
 	color: #404040;
-    font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+    font-family: "Helvetica Neue", -apple-system, system-ui, BlinkMacSystemFont, sans-serif;
 	font-size: 16px;
 	font-size: 1rem;
 	line-height: 1.5;
@@ -738,7 +742,6 @@ a:hover, a:active {
 }
 
 .site-title {
-    font-weight: bold;
     width: 250px;
     text-decoration: none;
 }
@@ -747,7 +750,7 @@ a:hover, a:active {
     color: black;
     margin-left: auto;
     margin-right: auto;
-    font-size: 1.3rem;
+    font-size: .9rem;
     display: inline;
 }
 
@@ -762,7 +765,7 @@ a:hover, a:active {
 }
 
 .site-content {
-    padding: 61px 40px 50px 40px;
+    padding: 0 40px 0 40px;
 }
 
 /*--------------------------------------------------------------
@@ -1025,21 +1028,32 @@ object {
 }
 
 /*--------------------------------------------------------------
+## Navigation table
+--------------------------------------------------------------*/
+.nav-table {
+    padding-top: 20px;
+}
+
+/*--------------------------------------------------------------
 ## Navigation grid
 --------------------------------------------------------------*/
-#nav-grid:after {
-    content: '';
-    display: block;
-    clear: both;
-}
+/*#nav-grid:after {*/
+    /*content: '';*/
+    /*display: block;*/
+    /*clear: both;*/
+/*}*/
 
 .grid-item {
     float: left;
-    width: calc(20% - 8px);
+    width: calc(25% - 8px);
     border: .05rem solid #dadee4;
     border-radius: .1rem;
     margin-top: 10px;
     line-height: 0;
+}
+
+#nav-grid {
+    margin-bottom: 100px;
 }
 
 .grid-item-desc {
@@ -1048,7 +1062,6 @@ object {
     bottom: 0;
     left: 0;
     right: 0;
-    background: rgba(29, 106, 154, 0);
     color: #fff;
     visibility: hidden;
     opacity: 0;
@@ -1071,6 +1084,7 @@ object {
     top: 50%;
     transform: translateY(-50%);
     font-weight: bolder;
+    font-size: 1.3rem;
     padding: 10px;
 }
 
@@ -1089,8 +1103,33 @@ object {
 }
 
 .grid-item:hover .wp-post-image {
-    filter: brightness(.2);
-    -webkit-filter: brightness(.2);
+    filter: invert(.7);
+    -webkit-filter: invert(.7);
+}
+
+.slide {
+    width: calc(100% + 20px);
+    padding-right: 20px;
+    overflow-y: scroll;
+    height: 100vh;
+    margin-top: 56px;
+}
+
+.slide-footer {
+    height: 100px;
+    width: 100%;
+}
+
+.slide.hidden {
+    visibility: hidden;
+}
+
+.grid-slide.hidden {
+    display: none;
+}
+
+.table-slide {
+    margin-top: -100vh;
 }
 
 @media (max-width: 960px) {
@@ -1115,6 +1154,18 @@ object {
     }
 
     .site-content {
-        padding: 69px 40px 50px 40px;
+        padding: 0 40px 0 40px;
+    }
+
+    .table-slide {
+        height: calc(100vh - 56px);
+    }
+
+    #nav-grid {
+        margin-bottom: 0;
+    }
+
+    .grid-slide {
+        margin-top: 112px;
     }
 }

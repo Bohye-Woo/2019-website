@@ -129,6 +129,9 @@ function bohye_scripts() {
     // Library for checking whether all images have been loaded for use with the isotope grid
     wp_enqueue_script( 'imagesLoaded', get_template_directory_uri() . '/js/imagesloaded.pkgd.min.js', array(), '20151215', true );
 
+    // Library for sorting the table
+    wp_enqueue_script( 'tablesort', get_template_directory_uri() . '/js/tablesort.min.js', array(), '20151215', true );
+
     wp_enqueue_script( 'bohye-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -137,24 +140,28 @@ function bohye_scripts() {
 }
 
 /**
- * Load Spectre.css framework
+ * Load Isotope.js
  */
-function load_spectre(){
-    wp_register_style( 'Spectre', 'https://cdnjs.cloudflare.com/ajax/libs/spectre.css/0.5.8/spectre.min.css' );
-    wp_enqueue_style('Spectre');
+function load_isotope() {
+    wp_register_script( 'isotope', 'https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js', array('jquery'),  true );
+    wp_enqueue_script('isotope');
 }
 
 /**
- * Load Isotope.js
+ * Add admin script for vibrant color trigger on featured image change
+ * @param $hook
  */
-function load_isotope(){
-    wp_register_script( 'isotope', 'https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js', array('jquery'),  true );
-    wp_enqueue_script('isotope');
+function add_admin_scripts( $hook ) {
+    global $post;
+    if ( $hook == 'post-new.php' || $hook == 'post.php' ) {
+        wp_enqueue_script(  'admin_script', get_stylesheet_directory_uri().'/js/admin.js' );
+    }
 }
 
 add_action( 'wp_enqueue_scripts', 'bohye_scripts' );
 //add_action( 'wp_enqueue_scripts', 'load_spectre' );
 add_action( 'wp_enqueue_scripts', 'load_isotope' );
+add_action( 'admin_enqueue_scripts', 'add_admin_scripts', 10, 1 );
 
 /**
  * Implement the Custom Header feature.
