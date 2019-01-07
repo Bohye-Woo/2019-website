@@ -38,14 +38,9 @@
         $nextExists = get_field('image_' . $id_it);
         while ($nextExists){
             ?>
-
             <div class="grid-item">
                 <img src="<?php the_field('image_' . $id_it) ?>">
-                <div class="grid-item-desc">
-                    <div class="grid-item-desc-text"><?php the_title(); ?></div>
-                </div>
             </div>
-
             <?php
             $id_it++;
             $nextExists = get_field('image_' . $id_it);
@@ -53,16 +48,13 @@
         ?>
     </div>
 
-	<div class="entry-content">
-		<?php
-		wp_link_pages( array(
-			'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'bohye' ),
-			'after'  => '</div>',
-		) );
-		?>
-	</div><!-- .entry-content -->
-
 	<footer class="entry-footer">
+        <?php
+        wp_link_pages( array(
+            'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'bohye' ),
+            'after'  => '</div>',
+        ) );
+        ?>
 		<?php bohye_entry_footer(); ?>
 	</footer><!-- .entry-footer -->
 </article><!-- #post-<?php the_ID(); ?> -->

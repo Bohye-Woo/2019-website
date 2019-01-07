@@ -11,6 +11,12 @@ jQuery(document).ready(function ($) {
         sortBy: 'random'
     });
 
+    if ($(".post .post-gallery").length) {
+        $(document).ready(function() {
+            $('.post .post-gallery').css('margin-top', $('.post header').outerHeight());
+        });
+    }
+
     $grid.imagesLoaded().progress(function () {
         $grid.isotope('layout');
     });
@@ -53,17 +59,19 @@ jQuery(document).ready(function ($) {
 
     if ($(".post .alt-layout").length){
         let win = $(this);
+        let header = $(".post header");
         if (win.width() <= 840) {
-            $(".post header").removeClass("alt-layout");
-            $(".post header").addClass("orig-layout");
+            header.removeClass("alt-layout");
+            header.addClass("orig-layout");
         }
         $(window).on('resize', function(){
+            $('.post .post-gallery').css('margin-top', header.outerHeight());
             if (win.width() <= 840) {
-                $(".post header").removeClass("alt-layout");
-                $(".post header").addClass("orig-layout");
+                header.removeClass("alt-layout");
+                header.addClass("orig-layout");
             } else {
-                $(".post header").removeClass("orig-layout");
-                $(".post header").addClass("alt-layout");
+                header.removeClass("orig-layout");
+                header.addClass("alt-layout");
             }
         });
     }
