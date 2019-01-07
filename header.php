@@ -37,7 +37,10 @@
                     'menu_class'     => 'nav-item'
                 ) );
                 ?>
-                <button class="table-toggle">Table</button>
+                <div class="nav-control-container">
+                    <button class="slide-toggle">Switch view</button>
+                    <button class="sort" data-sort="title">Sort</button>
+                </div>
                 <!--                --><?php //get_search_form(); ?>
             </nav><!-- #site-navigation -->
         </div>

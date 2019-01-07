@@ -31,7 +31,7 @@ get_header();
                 <div class="nav-table-container">
                 <?php $the_query = new WP_Query('posts_per_page=50'); ?>
                     <?php if ($the_query->have_posts()) : ?>
-                    <table class="nav-table">
+                    <table class="nav-table" id="nav-table">
                         <tbody>
                             <?php while ($the_query->have_posts()) : $the_query->the_post();
                                 $termsArray = get_the_terms($post->ID, "category");
@@ -41,11 +41,11 @@ get_header();
                                 }
                                 ?>
                                 <tr>
-                                    <td><?php the_field('year'); ?></td>
-                                    <td><?php the_title(); ?></td>
-                                    <td><?php the_field('format'); ?></td>
-                                    <td><?php the_field('client'); ?></td>
-                                    <td><?php the_field('location'); ?></td>
+                                    <td class="year"><?php the_field('year'); ?></td>
+                                    <td class="title"><?php the_title(); ?></td>
+                                    <td class="format"><?php the_field('format'); ?></td>
+                                    <td class="client"><?php the_field('client'); ?></td>
+                                    <td class="location"><?php the_field('location'); ?></td>
                                 </tr>
                             <?php endwhile; ?>
                         </tbody>

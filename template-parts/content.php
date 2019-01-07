@@ -10,42 +10,51 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<header class="entry-header">
-		<?php
-		if ( is_singular() ) :
-			the_title( '<h1 class="entry-title">', '</h1>' );
-		else :
-			the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
-		endif;
+    <header class="alt-layout">
+        <div class="col-2">
+            <table>
+                <tbody>
+                <tr>
+                    <td class="title"><?php the_title(); ?> <div class="year"><?php the_field('year'); ?></div>
+                        <div class="hidden">
+                            <div><?php the_field('format'); ?></div>
+                            <div><?php the_field('client'); ?></div>
+                            <div><?php the_field('location'); ?></div>
+                        </div>
+                    </td>
+                    <td class="format"><?php the_field('format'); ?></td>
+                    <td class="client"><?php the_field('client'); ?></td>
+                    <td class="location"><?php the_field('location'); ?></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="post-description col-1"><?php the_content(); ?></div>
+    </header>
 
-		if ( 'post' === get_post_type() ) :
-			?>
-			<div class="entry-meta">
-				<?php
-				bohye_posted_on();
-				bohye_posted_by();
-				?>
-			</div><!-- .entry-meta -->
-		<?php endif; ?>
-	</header><!-- .entry-header -->
+    <div class="post-gallery">
+        <?php
+        $id_it = 1;
+        $nextExists = get_field('image_' . $id_it);
+        while ($nextExists){
+            ?>
 
-	<?php bohye_post_thumbnail(); ?>
+            <div class="grid-item">
+                <img src="<?php the_field('image_' . $id_it) ?>">
+                <div class="grid-item-desc">
+                    <div class="grid-item-desc-text"><?php the_title(); ?></div>
+                </div>
+            </div>
+
+            <?php
+            $id_it++;
+            $nextExists = get_field('image_' . $id_it);
+        }
+        ?>
+    </div>
 
 	<div class="entry-content">
 		<?php
-		the_content( sprintf(
-			wp_kses(
-				/* translators: %s: Name of current post. Only visible to screen readers */
-				__( 'Continue reading<span class="screen-reader-text"> "%s"</span>', 'bohye' ),
-				array(
-					'span' => array(
-						'class' => array(),
-					),
-				)
-			),
-			get_the_title()
-		) );
-
 		wp_link_pages( array(
 			'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'bohye' ),
 			'after'  => '</div>',
