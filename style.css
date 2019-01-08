@@ -523,6 +523,7 @@ figure {
 table {
     margin: 0 0 1.5em;
     width: 100%;
+    border-collapse: collapse;
 }
 
 /*--------------------------------------------------------------
@@ -641,18 +642,17 @@ a:hover, a:active {
     margin-right: auto;
     display: table;
     width: 100%;
-    padding: 15px 5px 15px 5px;
-    border-bottom: 1px solid lightgray;
+    padding: 15px 40px 15px 40px;
+    border-bottom: 1px solid black;
 }
 
 .nav-container {
-    padding: 0px 35px 0px 35px;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 10;
-    background-color: #fdfdfd;
+    background-color: rgba(253,253,253, 0.99);
     opacity: 0.98;
     width: 100%;
 }
@@ -924,7 +924,6 @@ body.home .site-content {
 }
 
 .post header table {
-    border-collapse:collapse;
     width: 100%;
     table-layout: fixed;
 }
@@ -963,7 +962,7 @@ body.home .site-content {
     z-index: 8;
     opacity: 0.98;
     width: 100%;
-    background-color: #fdfdfd;
+    background-color: rgba(253,253,253, 0.99);
     padding: 15px 40px;
     border-top: 1px solid lightgray;
 }
@@ -1011,43 +1010,17 @@ body.home .site-content {
 }
 
 .post header.alt-layout .post-description {
-        column-count: 2;
+    column-count: 2;
+    width: 33.3333333%;
 }
-
 
 header.alt-layout {
     display: flex;
     flex-wrap: wrap;
 }
 
-header.alt-layout .col-1 {
-    width: 33.3333333%;
-}
-
-header.alt-layout .col-2 {
+header.alt-layout .description-table {
     width: 66.6666666%;
-}
-
-    /*Experimental**/
-.description-container {
-    margin-left: auto;
-    margin-right: auto;
-    width: 100%;
-    padding-left: 0.4rem;
-    padding-right: 0.4rem;
-}
-
-.description-container .columns {
-    display: flex;
-    flex-wrap: wrap;
-    margin-left: -0.4rem;
-    margin-right: -0.4rem;
-}
-
-.description-container .columns div {
-    width: 25%;
-    background: #b90011;
-    height: 50px;
 }
 
 /*--------------------------------------------------------------
@@ -1120,6 +1093,126 @@ object {
 
 .wp-caption-text {
     text-align: center;
+}
+
+/*--------------------------------------------------------------
+## Responsive grid
+--------------------------------------------------------------*/
+.container {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.container.grid-xl {
+    max-width: 1296px;
+}
+
+.container.grid-lg {
+    max-width: 976px;
+}
+
+.container.grid-md {
+    max-width: 856px;
+}
+
+.container.grid-sm {
+    max-width: 616px;
+}
+
+.container.grid-xs {
+    max-width: 496px;
+}
+
+.show-xs,
+.show-sm,
+.show-md,
+.show-lg,
+.show-xl {
+    display: none !important;
+}
+
+.columns {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.columns.col-gapless {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.columns.col-gapless > .column {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.columns.col-oneline {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+}
+
+.column {
+    flex: 1;
+    max-width: 100%;
+}
+
+.column.col-12, .column.col-11, .column.col-10, .column.col-9, .column.col-8, .column.col-7, .column.col-6, .column.col-5, .column.col-4, .column.col-3, .column.col-2, .column.col-1 {
+    flex: none;
+}
+
+.col-12 {
+    width: 100%;
+}
+
+.col-11 {
+    width: 91.66666667%;
+}
+
+.col-10 {
+    width: 83.33333333%;
+}
+
+.col-9 {
+    width: 75%;
+}
+
+.col-8 {
+    width: 66.66666667%;
+}
+
+.col-7 {
+    width: 58.33333333%;
+}
+
+.col-6 {
+    width: 50%;
+}
+
+.col-5 {
+    width: 41.66666667%;
+}
+
+.col-4 {
+    width: 33.33333333%;
+}
+
+.col-3 {
+    width: 25%;
+}
+
+.col-2 {
+    width: 16.66666667%;
+}
+
+.col-1 {
+    width: 8.33333333%;
+}
+
+.col-auto {
+    flex: 0 0 auto;
+    max-width: none;
+    width: auto;
 }
 
 /*--------------------------------------------------------------
@@ -1259,37 +1352,6 @@ object {
     -webkit-filter: invert(.7);
 }
 
-/*--------------------------------------------------------------
-## View slides
---------------------------------------------------------------*/
-.slide {
-    width: calc(100% + 40px);
-    padding-right: 40px;
-    overflow-y: scroll;
-    height: 100vh;
-    margin-top: 56px;
-}
-
-.slide-footer {
-    height: 100px;
-    width: 100%;
-}
-
-.slide.hidden {
-    visibility: hidden;
-}
-
-.grid-slide.hidden {
-    display: none;
-}
-
-.table-slide {
-    margin-top: -100vh;
-}
-
-/*--------------------------------------------------------------
-## Media queries
---------------------------------------------------------------*/
 @media (max-width: 960px) {
     .home .grid-item {
         width: calc(33.3333333% - 7px);
@@ -1325,5 +1387,118 @@ object {
 
     .grid-slide {
         margin-top: 112px;
+    }
+}
+
+/*--------------------------------------------------------------
+## View slides
+--------------------------------------------------------------*/
+.slide {
+    width: calc(100% + 40px);
+    padding-right: 40px;
+    overflow-y: scroll;
+    height: 100vh;
+    margin-top: 56px;
+}
+
+.slide-footer {
+    height: 100px;
+    width: 100%;
+}
+
+.slide.hidden {
+    visibility: hidden;
+}
+
+.grid-slide.hidden {
+    display: none;
+}
+
+.table-slide {
+    margin-top: -100vh;
+}
+
+/*--------------------------------------------------------------
+## About page
+--------------------------------------------------------------*/
+.page ul.fill {
+    flex: 0 0 auto;
+    max-width: none;
+    width: auto;
+}
+
+.page ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.page table {
+    margin: 10px 0 0 0;
+}
+
+.about-content {
+    padding: 56px 0 0 0;
+}
+
+.about-content .entry-content {
+    margin: 0;
+}
+
+.about-section {
+    border-bottom: 1px solid black;
+    padding: 15px 40px;
+}
+
+.about-section .address {
+    margin-top: 50px;
+}
+
+.about-section #map {
+    margin: 10px 0;
+    width: 100%;
+    height: 150px;
+}
+
+.about-section div.title {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+/* Hide Google logo and copyright*/
+a[href^="http://maps.google.com/maps"]{display:none !important}
+a[href^="https://maps.google.com/maps"]{display:none !important}
+
+.gmnoprint a, .gmnoprint span, .gm-style-cc {
+    display:none;
+}
+.gmnoprint div {
+    background:none !important;
+}
+
+@media (max-width: 1060px) {
+    .about-section .column.location {
+        display: none;
+    }
+    .about-section .column.row-title {
+        width: 66.66666667%;
+    }
+}
+
+@media (max-width: 600px) {
+    .about-section .column {
+        width: 100%;
+    }
+
+    .about-section .column.skills {
+        display: none;
+    }
+
+    .about-section .address {
+        margin-top: 10px;
+    }
+
+    .about-section .columns.row {
+        margin: 10px 0;
     }
 }

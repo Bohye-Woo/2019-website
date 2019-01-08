@@ -11,7 +11,7 @@
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
     <header class="alt-layout">
-        <div class="col-2">
+        <div class="description-table">
             <table>
                 <tbody>
                 <tr>
@@ -29,7 +29,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="post-description col-1"><?php the_content(); ?></div>
+        <div class="post-description"><?php the_content(); ?></div>
     </header>
 
     <div class="post-gallery">
