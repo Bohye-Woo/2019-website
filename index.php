@@ -71,6 +71,7 @@ get_header();
                             } ?>
                             <div class="grid-item-desc">
                                 <div class="grid-item-desc-text"><?php the_title(); ?></div>
+                                <div class="grid-item-year"><?php the_field('year'); ?></div>
                             </div>
                         </div>
                     </a>

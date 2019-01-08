@@ -129,9 +129,6 @@ function bohye_scripts() {
     // Library for checking whether all images have been loaded for use with the isotope grid
     wp_enqueue_script( 'imagesLoaded', get_template_directory_uri() . '/js/imagesloaded.pkgd.min.js', array(), '20151215', true );
 
-    // Library for sorting the table
-    wp_enqueue_script( 'listjs', get_template_directory_uri() . '/js/list.min.js', array(), '20151215', true );
-
     wp_enqueue_script( 'bohye-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
 
     wp_enqueue_script( 'google-maps', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAY2GjlmHhlhFKGa-F_QQ37jJNCmxmrWW0 &callback=initMap', array(),  true );

@@ -1,18 +1,22 @@
 jQuery(document).ready(function ($) {
     let animationCompleted = true;
     let $container = $('#nav-grid');
-    let $grid = $container.isotope({
+    let $navGrid = $container.isotope({
         itemSelector: '.grid-item',
         layoutMode: 'masonry',
         masonry: {
             rowHeight: 100,
             gutter: 10
         },
-        sortBy: 'random'
+        sortBy: 'random',
+        getSortData: {
+            title: '.grid-item-desc-text',
+            year: '.grid-item-year parseInt'
+        }
     });
 
-    $grid.imagesLoaded().progress(function () {
-        $grid.isotope('layout');
+    $navGrid.imagesLoaded().progress(function () {
+        $navGrid.isotope('layout');
     });
 
     //Add the class selected to the item that is clicked, and remove from the others
@@ -275,4 +279,32 @@ jQuery(document).ready(function ($) {
             });
         }
     }
+
+    $(".sort-alpha").click(function () {
+        $navGrid.isotope({ sortBy: 'title' });
+        navSort(".title");
+    });
+
+    $(".sort-chrono").click(function () {
+        navSort(".year");
+        $navGrid.isotope({ sortBy: 'year' });
+    });
+
+    function navSort(columnClass) {
+        let column = $(columnClass);
+        var table = column.parents('table').eq(0);
+        var rows = table.find('tr').toArray().sort(comparer(column.index()));
+        this.asc = !column.asc;
+        if (!this.asc){rows = rows.reverse()}
+        for (var i = 0; i < rows.length; i++){table.append(rows[i])}
+    }
+
+    function comparer(index) {
+        return function(a, b) {
+            var valA = getCellValue(a, index), valB = getCellValue(b, index);
+            return $.isNumeric(valA) && $.isNumeric(valB) ? valA - valB : valA.toString().localeCompare(valB)
+        }
+    }
+    function getCellValue(row, index){ return $(row).children('td').eq(index).text() }
 });
+

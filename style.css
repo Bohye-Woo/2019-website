@@ -1269,7 +1269,7 @@ object {
 ## Navigation table
 --------------------------------------------------------------*/
 .nav-table {
-    padding-top: 20px;
+    margin-top: 15px;
 }
 
 .nav-control-container {
@@ -1411,7 +1411,7 @@ object {
 }
 
 .grid-slide.hidden {
-    display: none;
+    visibility: hidden;
 }
 
 .table-slide {

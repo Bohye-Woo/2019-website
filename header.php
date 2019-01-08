@@ -39,7 +39,8 @@
                 ?>
                 <div class="nav-control-container">
                     <button class="slide-toggle">Switch view</button>
-                    <button class="sort" data-sort="title">Sort</button>
+                    <button class="sort-alpha">Sort alphabetical</button>
+                    <button class="sort-chrono">Sort chronological</button>
                 </div>
                 <!--                --><?php //get_search_form(); ?>
             </nav><!-- #site-navigation -->
