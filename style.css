@@ -769,7 +769,7 @@ a:hover, a:active {
 }
 
 body.home .site-content {
-    padding: 0 40px 0 40px;
+    padding: 56px 40px 0 40px;
 }
 
 /*--------------------------------------------------------------
@@ -964,7 +964,6 @@ body.home .site-content {
     width: 100%;
     background-color: rgba(253,253,253, 0.99);
     padding: 15px 40px;
-    border-top: 1px solid lightgray;
 }
 
 .post td .hidden {
@@ -981,31 +980,26 @@ body.home .site-content {
     }
 }
 
-@media (max-width: 840px) {
-    .post .post-description {
-        column-count: 2;
-    }
-
-    .post .orig-layout td.client {
-        display: none;
-    }
-}
-
-@media (max-width: 600px) {
+@media (max-width: 760px) {
     .post .post-description {
         column-count: 1;
     }
 
-    .post .orig-layout td.format {
-        display: none;
+    .post .orig-layout td.location {
+        display:table-cell;
     }
 
-    .post td .hidden {
-        display: block;
+    .post header {
+        position: relative;
+        z-index: auto;
     }
 
-    .post header td {
+    .post .grid-item {
         width: 100%;
+    }
+
+    .orig-layout td {
+        padding: 0 !important;
     }
 }
 
@@ -1270,6 +1264,7 @@ object {
 --------------------------------------------------------------*/
 .nav-table {
     margin-top: 15px;
+    margin-bottom: 56px;
 }
 
 .nav-control-container {
@@ -1358,7 +1353,7 @@ object {
     }
 }
 
-@media (max-width: 840px) {
+@media (max-width: 760px) {
     .home .grid-item {
         width: calc(50% - 5px);
     }
@@ -1384,10 +1379,6 @@ object {
     #nav-grid {
         margin-bottom: 0;
     }
-
-    .grid-slide {
-        margin-top: 112px;
-    }
 }
 
 /*--------------------------------------------------------------
@@ -1398,7 +1389,6 @@ object {
     padding-right: 40px;
     overflow-y: scroll;
     height: 100vh;
-    margin-top: 56px;
 }
 
 .slide-footer {
@@ -1476,6 +1466,15 @@ a[href^="https://maps.google.com/maps"]{display:none !important}
     background:none !important;
 }
 
+@media (max-width: 960px) {
+    .about-section .col-2 {
+        width: 25%;
+    }
+    .about-section .col-4 {
+        width: 50%;
+    }
+}
+
 @media (max-width: 1060px) {
     .about-section .column.location {
         display: none;
@@ -1500,5 +1499,46 @@ a[href^="https://maps.google.com/maps"]{display:none !important}
 
     .about-section .columns.row {
         margin: 10px 0;
+    }
+}
+
+@media
+only screen and (max-width: 760px) {
+    /* Force table to not be like tables anymore */
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    table {
+        margin-bottom: 15px;
+    }
+
+    /* Hide table headers (but not display: none;, for accessibility) */
+    thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    tr {
+        margin-bottom: 10px;
+    }
+
+    td {
+        /* Behave  like a "row" */
+        border: none;
+        position: relative;
+        width: 100% !important;
+    }
+
+    td:before {
+        /* Now like a table header */
+        position: absolute;
+        /* Top/left values mimic padding */
+        top: 6px;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
     }
 }

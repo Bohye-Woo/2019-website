@@ -38,9 +38,9 @@
                 ) );
                 ?>
                 <div class="nav-control-container">
-                    <button class="slide-toggle">Switch view</button>
-                    <button class="sort-alpha">Sort alphabetical</button>
-                    <button class="sort-chrono">Sort chronological</button>
+                    <button class="slide-toggle">V</button>
+                    <button class="sort-alpha">A</button>
+                    <button class="sort-chrono">C</button>
                 </div>
                 <!--                --><?php //get_search_form(); ?>
             </nav><!-- #site-navigation -->

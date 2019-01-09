@@ -15,13 +15,7 @@
             <table>
                 <tbody>
                 <tr>
-                    <td class="title"><?php the_title(); ?> <div class="year"><?php the_field('year'); ?></div>
-                        <div class="hidden">
-                            <div><?php the_field('format'); ?></div>
-                            <div><?php the_field('client'); ?></div>
-                            <div><?php the_field('location'); ?></div>
-                        </div>
-                    </td>
+                    <td class="title"><?php the_title(); ?> <div class="year"><?php the_field('year'); ?></div></td>
                     <td class="format"><?php the_field('format'); ?></td>
                     <td class="client"><?php the_field('client'); ?></td>
                     <td class="location"><?php the_field('location'); ?></td>

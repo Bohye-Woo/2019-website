@@ -48,7 +48,7 @@ jQuery(document).ready(function ($) {
 
             if ($table_slide.hasClass("hidden")) {
                 $table_slide.removeClass("hidden");
-                $table_slide.animate({marginTop: '56px'}, 600, function () {
+                $table_slide.animate({marginTop: '0'}, 600, function () {
                     $grid_slide.addClass("hidden");
                     animationCompleted = true;
                 });
@@ -244,8 +244,8 @@ jQuery(document).ready(function ($) {
     function postSetup() {
         let win = $(this);
         let header = $(".post header");
-
-        $('.post .post-gallery').css('margin-top', header.outerHeight());
+        let postGallery = $('.post .post-gallery');
+        postGallery.css('margin-top', header.outerHeight());
 
         let $galleryContainer = $('.post-gallery');
         let $postGallery = $galleryContainer.isotope({
@@ -268,7 +268,11 @@ jQuery(document).ready(function ($) {
                 header.addClass("orig-layout");
             }
             $(window).on('resize', function () {
-                $('.post .post-gallery').css('margin-top', header.outerHeight());
+                if (win.width() <= 760){
+                    postGallery.css('margin-top', 60);
+                } else {
+                    postGallery.css('margin-top', header.outerHeight());
+                }
                 if (win.width() <= 840) {
                     header.removeClass("alt-layout");
                     header.addClass("orig-layout");
