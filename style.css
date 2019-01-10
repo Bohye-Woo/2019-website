@@ -1497,6 +1497,10 @@ object {
     margin-bottom: 10px;
 }
 
+.about-section td {
+    border: 0;
+}
+
 /* Hide Google logo and copyright*/
 a[href^="http://maps.google.com/maps"]{display:none !important}
 a[href^="https://maps.google.com/maps"]{display:none !important}
