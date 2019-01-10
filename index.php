@@ -27,12 +27,36 @@ get_header();
                 <?php
                 endif;
                 ?>
-            <div class="slide table-slide hidden">
-                <div class="nav-table-container">
-                <?php $the_query = new WP_Query('posts_per_page=50'); ?>
+                <div class="slide table-slide hidden">
+                    <div class="nav-table-container">
+                        <?php $the_query = new WP_Query('posts_per_page=50'); ?>
+                        <?php if ($the_query->have_posts()) : ?>
+                            <table class="nav-table" id="nav-table">
+                                <tbody>
+                                <?php while ($the_query->have_posts()) : $the_query->the_post();
+                                    $termsArray = get_the_terms($post->ID, "category");
+                                    $termsString = "";
+                                    foreach ($termsArray as $term) {
+                                        $termsString .= $term->slug . ' ';
+                                    }
+                                    ?>
+                                    <tr data-href="<?php the_permalink(); ?>">
+                                        <td class="year"><?php the_field('year'); ?></td>
+                                        <td class="title"><?php the_title(); ?></td>
+                                        <td class="format"><?php the_field('format'); ?></td>
+                                        <td class="client"><?php the_field('client'); ?></td>
+                                        <td class="location"><?php the_field('location'); ?></td>
+                                    </tr>
+                                <?php endwhile; ?>
+                                </tbody>
+                            </table>
+                        <?php endif; ?>
+                    </div>
+                </div>
+                <div class="slide grid-slide">
+                    <?php $the_query = new WP_Query('posts_per_page=50'); ?>
                     <?php if ($the_query->have_posts()) : ?>
-                    <table class="nav-table" id="nav-table">
-                        <tbody>
+                        <div id="nav-grid">
                             <?php while ($the_query->have_posts()) : $the_query->the_post();
                                 $termsArray = get_the_terms($post->ID, "category");
                                 $termsString = "";
@@ -40,75 +64,21 @@ get_header();
                                     $termsString .= $term->slug . ' ';
                                 }
                                 ?>
-                                <tr>
-                                    <td class="year"><?php the_field('year'); ?></td>
-                                    <td class="title"><?php the_title(); ?></td>
-                                    <td class="format"><?php the_field('format'); ?></td>
-                                    <td class="client"><?php the_field('client'); ?></td>
-                                    <td class="location"><?php the_field('location'); ?></td>
-                                </tr>
+                                <a href="<?php the_permalink(); ?>">
+                                    <div class="<?php echo $termsString; ?> grid-item">
+                                        <?php if (has_post_thumbnail()) {
+                                            the_post_thumbnail();
+                                        } ?>
+                                        <div class="grid-item-desc">
+                                            <div class="grid-item-desc-text"><?php the_title(); ?></div>
+                                            <div class="grid-item-year"><?php the_field('year'); ?></div>
+                                        </div>
+                                    </div>
+                                </a>
                             <?php endwhile; ?>
-                        </tbody>
-                    </table>
-                <?php endif; ?>
-                </div>
-            </div>
-            <div class="slide grid-slide">
-            <?php $the_query = new WP_Query('posts_per_page=50'); ?>
-                <?php if ($the_query->have_posts()) : ?>
-                <div id="nav-grid">
-                    <?php while ($the_query->have_posts()) : $the_query->the_post();
-                        $termsArray = get_the_terms($post->ID, "category");
-                        $termsString = "";
-                        foreach ($termsArray as $term) {
-                            $termsString .= $term->slug . ' ';
-                        }
-                        ?>
-                    <a href="<?php the_permalink(); ?>">
-                        <div class="<?php echo $termsString; ?> grid-item">
-                            <?php if (has_post_thumbnail()) {
-                                the_post_thumbnail();
-                            } ?>
-                            <div class="grid-item-desc">
-                                <div class="grid-item-desc-text"><?php the_title(); ?></div>
-                                <div class="grid-item-year"><?php the_field('year'); ?></div>
-                            </div>
                         </div>
-                    </a>
-                        <a href="<?php the_permalink(); ?>">
-                            <div class="<?php echo $termsString; ?> grid-item">
-                                <?php if (has_post_thumbnail()) {
-                                    the_post_thumbnail();
-                                } ?>
-                                <div class="grid-item-desc">
-                                    <div class="grid-item-desc-text"><?php the_title(); ?></div>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="<?php the_permalink(); ?>">
-                            <div class="<?php echo $termsString; ?> grid-item">
-                                <?php if (has_post_thumbnail()) {
-                                    the_post_thumbnail();
-                                } ?>
-                                <div class="grid-item-desc">
-                                    <div class="grid-item-desc-text"><?php the_title(); ?></div>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="<?php the_permalink(); ?>">
-                            <div class="<?php echo $termsString; ?> grid-item">
-                                <?php if (has_post_thumbnail()) {
-                                    the_post_thumbnail();
-                                } ?>
-                                <div class="grid-item-desc">
-                                    <div class="grid-item-desc-text"><?php the_title(); ?></div>
-                                </div>
-                            </div>
-                        </a>
-                    <?php endwhile; ?>
+                    <?php endif; ?>
                 </div>
-            <?php endif; ?>
-            </div>
             <?php
 
             else :

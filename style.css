@@ -526,6 +526,27 @@ table {
     border-collapse: collapse;
 }
 
+td {
+    border-bottom: 1px solid black;
+    padding: 5px 10px 5px 0;
+}
+
+th {
+    font-weight: normal;
+    text-align: left;
+    border-bottom: 1px solid black;
+    padding: 5px 10px 5px 0;
+    text-transform: uppercase;
+}
+
+tr td:first-child, tr th:first-child {
+    padding-left: 40px;
+}
+
+tr td:last-child, tr th:last-child {
+    padding-right: 40px;
+}
+
 /*--------------------------------------------------------------
 # Forms
 --------------------------------------------------------------*/
@@ -765,11 +786,7 @@ a:hover, a:active {
 }
 
 .site-content {
-    padding: 56px 40px 50px 40px;
-}
-
-body.home .site-content {
-    padding: 56px 40px 0 40px;
+    padding-top: 56px;
 }
 
 /*--------------------------------------------------------------
@@ -894,6 +911,11 @@ body.home .site-content {
     margin: 0 0 1.5em;
 }
 
+.post {
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
 .updated:not(.published) {
     display: none;
 }
@@ -921,6 +943,7 @@ body.home .site-content {
 .post header {
     padding-top: 15px;
     margin-bottom: 30px;
+    border-bottom: 1px solid black;
 }
 
 .post header table {
@@ -931,6 +954,7 @@ body.home .site-content {
 .post header td {
     vertical-align: top;
     padding: 0 12px 0 0;
+    border: none;
 }
 
 .post .orig-layout td.format {
@@ -967,6 +991,10 @@ body.home .site-content {
 }
 
 .post td .hidden {
+    display: none;
+}
+
+.post-gallery {
     display: none;
 }
 
@@ -1263,7 +1291,6 @@ object {
 ## Navigation table
 --------------------------------------------------------------*/
 .nav-table {
-    margin-top: 15px;
     margin-bottom: 56px;
 }
 
@@ -1294,6 +1321,13 @@ object {
 
 #nav-grid {
     margin-bottom: 100px;
+    display: none;
+}
+
+.nav-table tr:hover td {
+    background-color: black;
+    color: white;
+    cursor: pointer;
 }
 
 .grid-item-desc {
@@ -1326,6 +1360,10 @@ object {
     font-weight: bolder;
     font-size: 1.3rem;
     padding: 10px;
+}
+
+.grid-item-year {
+    display: none;
 }
 
 .grid-item .wp-post-image {
@@ -1385,10 +1423,9 @@ object {
 ## View slides
 --------------------------------------------------------------*/
 .slide {
-    width: calc(100% + 40px);
-    padding-right: 40px;
     overflow-y: scroll;
     height: 100vh;
+    width: 100%;
 }
 
 .slide-footer {
@@ -1398,6 +1435,11 @@ object {
 
 .slide.hidden {
     visibility: hidden;
+}
+
+.grid-slide {
+    padding-left: 40px;
+    padding-right: 40px;
 }
 
 .grid-slide.hidden {

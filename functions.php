@@ -127,7 +127,7 @@ function bohye_scripts() {
     wp_enqueue_script( 'bohye-main', get_template_directory_uri() . '/js/main.js', array(), '20151215', true );
 
     // Library for checking whether all images have been loaded for use with the isotope grid
-    wp_enqueue_script( 'imagesLoaded', get_template_directory_uri() . '/js/imagesloaded.pkgd.min.js', array(), '20151215', true );
+    wp_enqueue_script( 'imagesLoaded', 'https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js', array(), '20151215', true );
 
     wp_enqueue_script( 'bohye-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
 
