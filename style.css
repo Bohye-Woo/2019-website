@@ -682,7 +682,7 @@ a:hover, a:active {
 }
 
 .mobile-menu-container.move-up {
-    top: -38px;
+    top: -56px;
 }
 
 .main-navigation ul,
@@ -698,7 +698,7 @@ a:hover, a:active {
 .mobile-menu-container li {
     display: table-cell;
     width: 50vw;
-    height: 38px;
+    height: 55px;
     vertical-align: middle;
     border-right: 1px solid black;
 }
@@ -1402,20 +1402,22 @@ body.home tr td:last-child, tr th:last-child {
     bottom: 0;
     left: 0;
     right: 0;
-    color: #fff;
-    visibility: hidden;
+    color: #ffffff;
     opacity: 0;
+    visibility: hidden;
     text-align: center;
     vertical-align: middle;
+    background-color: #000000;
 
     /* transition effect. not necessary */
-    transition: all .2s;
-    -webkit-transition: all .2s;
-    -moz-transition: all .2s;
-    -o-transition: all .2s;
+    transition: all .5s;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    -o-transition: all .5s;
     margin: 0;
     line-height: 1.5;
 }
+
 
 .grid-item-desc-text {
     margin-left: auto;
@@ -1447,8 +1449,8 @@ body.home tr td:last-child, tr th:last-child {
 }
 
 .grid-item:hover .wp-post-image {
-    filter: invert(.7);
-    -webkit-filter: invert(.7);
+    /*filter: invert(.7);
+    -webkit-filter: invert(.7);*/
 }
 
 @media (max-width: 960px) {
@@ -1481,7 +1483,7 @@ body.home tr td:last-child, tr th:last-child {
     }
 
     .grid-slide {
-        padding-top: 38px;
+        padding-top: 56px;
     }
 }
 

@@ -152,7 +152,8 @@ function load_isotope() {
 function add_admin_scripts( $hook ) {
     global $post;
     if ( $hook == 'post-new.php' || $hook == 'post.php' ) {
-        wp_enqueue_script(  'admin_script', get_stylesheet_directory_uri().'/js/admin.js' );
+        wp_enqueue_script(  'vibrantjs', get_stylesheet_directory_uri().'/js/vibrant.min.js', true);
+        wp_enqueue_script(  'admin_script', get_stylesheet_directory_uri().'/js/admin.js', array('vibrantjs'), true);
     }
 }
 
