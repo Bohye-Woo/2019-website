@@ -539,14 +539,6 @@ th {
     text-transform: uppercase;
 }
 
-tr td:first-child, tr th:first-child {
-    padding-left: 40px;
-}
-
-tr td:last-child, tr th:last-child {
-    padding-right: 40px;
-}
-
 /*--------------------------------------------------------------
 # Forms
 --------------------------------------------------------------*/
@@ -658,13 +650,8 @@ a:hover, a:active {
 --------------------------------------------------------------*/
 .main-navigation {
     clear: both;
-    float: left;
     margin-left: auto;
     margin-right: auto;
-    display: table;
-    width: 100%;
-    padding: 15px 40px 15px 40px;
-    border-bottom: 1px solid black;
 }
 
 .nav-container {
@@ -674,16 +661,50 @@ a:hover, a:active {
     right: 0;
     z-index: 10;
     background-color: rgba(253,253,253, 0.99);
-    opacity: 0.98;
+    padding: 15px 40px 15px 40px;
     width: 100%;
+    border-bottom: 1px solid black;
+    display: table;
+    height: 56px;
 }
 
-.main-navigation ul {
+.mobile-menu-container {
+    position: fixed;
+    top: 56px;
+    left: 0;
+    right: 0;
+    z-index: 5;
+    background-color: rgba(253,253,253, 0.99);
+    width: 100%;
+    border-bottom: 1px solid black;
+    display: table;
+    transition: top 0.2s ease-in-out;
+}
+
+.mobile-menu-container.move-up {
+    top: -38px;
+}
+
+.main-navigation ul,
+.mobile-menu-container ul {
     list-style: none;
     margin: 0;
     padding-left: 0;
     display: table-cell;
+    vertical-align: middle;
     text-align: center;
+}
+
+.mobile-menu-container li {
+    display: table-cell;
+    width: 50vw;
+    height: 38px;
+    vertical-align: middle;
+    border-right: 1px solid black;
+}
+
+.mobile-menu-container li:last-child {
+    border-right: none;
 }
 
 .main-navigation ul ul {
@@ -719,7 +740,8 @@ a:hover, a:active {
     position: relative;
 }
 
-.main-navigation a {
+.nav-container a,
+.mobile-menu-container a {
     display: block;
     text-decoration: none;
 }
@@ -727,16 +749,35 @@ a:hover, a:active {
 /* Small menu. */
 .menu-toggle,
 .main-navigation.toggled ul {
-    display: block;
+    display: none;
 }
 
-@media screen and (min-width: 37.5em) {
+.mobile-menu-container {
+    display: none;
+}
+
+@media screen and (min-width: 600px) {
     .menu-toggle {
         display: none;
     }
 
     .main-navigation ul {
         display: block;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .nav-container .main-navigation,
+    .nav-container .nav-control-container {
+        display: none;
+    }
+
+    .nav-container .site-title {
+        text-align: center;
+    }
+
+    .mobile-menu-container {
+        display: table;
     }
 }
 
@@ -780,7 +821,7 @@ a:hover, a:active {
     vertical-align: middle;
 }
 
-.nav-item .nav-menu li {
+.nav-item .menu li {
     padding-left: 40px;
     font-size: 0.8rem;
 }
@@ -1028,6 +1069,16 @@ a:hover, a:active {
 
     .orig-layout td {
         padding: 0 !important;
+    }
+}
+
+@media (max-width: 760px) {
+    .post {
+        padding: 0;
+    }
+
+    .post .post-gallery {
+        padding: 0 40px;
     }
 }
 
@@ -1298,6 +1349,21 @@ object {
     float: right;
 }
 
+body.home tr td:first-child, tr th:first-child {
+    padding-left: 40px;
+}
+
+body.home tr td:last-child, tr th:last-child {
+    padding-right: 40px;
+}
+
+@media (max-width: 760px) {
+    body.home tr td {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+}
+
 /*--------------------------------------------------------------
 ## Navigation grid
 --------------------------------------------------------------*/
@@ -1406,16 +1472,16 @@ object {
         width: 100% !important;
     }
 
-    .site-content {
-        padding: 0 40px 0 40px;
-    }
-
     .table-slide {
         height: calc(100vh - 56px);
     }
 
     #nav-grid {
         margin-bottom: 0;
+    }
+
+    .grid-slide {
+        padding-top: 38px;
     }
 }
 
@@ -1545,6 +1611,10 @@ a[href^="https://maps.google.com/maps"]{display:none !important}
 
     .about-section .columns.row {
         margin: 10px 0;
+    }
+
+    .about-content {
+        padding-top: 94px;
     }
 }
 

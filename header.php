@@ -23,30 +23,35 @@
 <body <?php body_class(); ?>>
 <div id="page" class="site">
     <a class="skip-link screen-reader-text" href="#content"><?php esc_html_e('Skip to content', 'bohye'); ?></a>
-
     <header id="masthead" class="site-header">
         <div class="nav-container">
-            <nav id="site-navigation" class="main-navigation">
-                <div class="site-title nav-item"><a href="<?php echo esc_url(home_url('/')); ?>"
-                                                    rel="home"><?php bloginfo('name'); ?></a></div>
-                <button class="menu-toggle" aria-controls="primary-menu"
-                        aria-expanded="false"><?php esc_html_e('Primary Menu', 'bohye'); ?></button>
-
-                <div class="nav-item">
-                    <?php
-                    wp_nav_menu(array(
-                        'theme_location' => 'menu-1',
-                        'menu_id' => 'primary-menu'
-                    ));
-                    ?>
-                </div>
-                <div class="nav-control-container">
-                    <button class="slide-toggle">V</button>
-                    <button class="sort-alpha">A</button>
-                    <button class="sort-chrono">C</button>
-                </div>
-                <!--                --><?php //get_search_form(); ?>
+            <div class="site-title nav-item"><a href="<?php echo esc_url(home_url('/')); ?>"
+                                                rel="home"><?php bloginfo('name'); ?></a></div>
+            <nav id="site-navigation" class="main-navigation nav-item">
+                <?php
+                wp_nav_menu(array(
+                    'theme_location' => 'menu-1',
+                    'menu_id' => 'primary-menu',
+                    'container' => false
+                ));
+                ?>
             </nav><!-- #site-navigation -->
+            <button class="menu-toggle" aria-controls="primary-menu"
+                    aria-expanded="false"><?php esc_html_e('Primary Menu', 'bohye'); ?></button>
+            <div class="nav-control-container">
+                <button class="slide-toggle">V</button>
+                <button class="sort-alpha">A</button>
+                <button class="sort-chrono">C</button>
+            </div>
+        </div>
+        <div class="mobile-menu-container">
+            <?php
+            wp_nav_menu(array(
+                'theme_location' => 'menu-1',
+                'menu_id' => 'primary-menu',
+                'container' => false
+            ));
+            ?>
         </div>
     </header><!-- #masthead -->
 

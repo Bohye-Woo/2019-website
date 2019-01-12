@@ -1,5 +1,7 @@
 jQuery(document).ready(function ($) {
     $(window).load(function () {
+        let mobile = false;
+        let win = $(this);
         let body = $("body");
         let gridFadeInSpeed = 800;
 
@@ -9,6 +11,47 @@ jQuery(document).ready(function ($) {
             postSetup();
         } else if ($(".about-section").length) {
             aboutSetup();
+        }
+
+        function hideMobileMenu ($scrollContainer) {
+            let didScroll;
+            let lastScrollTop = 0;
+            let delta = 5;
+            let navbarHeight = $('.mobile-menu-container').outerHeight();
+            console.log("hello");
+            $scrollContainer.scroll(function(event){
+                didScroll = true;
+                console.log("scrolling");
+            });
+
+            setInterval(function() {
+                if (didScroll) {
+                    hasScrolled();
+                    didScroll = false;
+                }
+            }, 250);
+
+            function hasScrolled() {
+                let st = $scrollContainer.scrollTop();
+                console.log(st);
+
+                // Make sure they scroll more than delta
+                if(Math.abs(lastScrollTop - st) <= delta)
+                    return;
+
+                // If they scrolled down and are past the navbar, add class .nav-up.
+                // This is necessary so you never see what is "behind" the navbar.
+                if (st > lastScrollTop && st > navbarHeight){
+                    // Scroll Down
+                    console.log("yep");
+                    $('.mobile-menu-container').addClass('move-up');
+                } else {
+                        $('.mobile-menu-container').removeClass('move-up');
+                }
+                console.log("scrolltop_old = " + lastScrollTop);
+                lastScrollTop = st;
+                console.log("scrolltop_new = " + lastScrollTop);
+            }
         }
 
         function frontSetup() {
@@ -26,7 +69,8 @@ jQuery(document).ready(function ($) {
                     getSortData: {
                         title: '.grid-item-desc-text',
                         year: '.grid-item-year parseInt'
-                    }
+                    },
+                     sortBy: 'year'
                 });
             });
 
@@ -79,9 +123,15 @@ jQuery(document).ready(function ($) {
                 });
             });
 
-            function loadGrid() {
-                console.log('arrange done');
-            }
+            $(window).on('resize', function () {
+                let $gridSlide = $('.grid-slide');
+                if (win.width() <= 600) {
+                    hideMobileMenu($gridSlide);
+                } else {
+                    $gridSlide.unbind('scroll');
+                }
+            });
+            $(window).trigger( "resize" );
 
             $(".sort-alpha").click(function () {
                 $container.isotope({sortBy: 'title'});
@@ -292,10 +342,18 @@ jQuery(document).ready(function ($) {
                 });
                 let marker = new google.maps.Marker({position: studio, map: map});
             }
+
+            $(window).on('resize', function () {
+                if (win.width() <= 600) {
+                    hideMobileMenu($(this));
+                } else {
+                    $(this).unbind('scroll');
+                }
+            });
+            $(window).trigger("resize");
         }
 
         function postSetup() {
-            let win = $(this);
             let header = $(".post header");
             let postGallery = $('.post .post-gallery');
             postGallery.css('margin-top', header.outerHeight());
@@ -305,7 +363,6 @@ jQuery(document).ready(function ($) {
                 $galleryContainer.fadeIn(gridFadeInSpeed).isotope({
                     itemSelector: '.grid-item',
                     layoutMode: 'masonry',
-                    transitionDuration: '5.8s',
                     masonry: {
                         rowHeight: 100,
                         gutter: 12
@@ -319,6 +376,11 @@ jQuery(document).ready(function ($) {
                     header.addClass("orig-layout");
                 }
                 $(window).on('resize', function () {
+                    if (win.width() <= 600) {
+                        hideMobileMenu($(this));
+                    } else {
+                        $(this).unbind('scroll');
+                    }
                     if (win.width() <= 760) {
                         postGallery.css('margin-top', 60);
                     } else {
@@ -332,6 +394,7 @@ jQuery(document).ready(function ($) {
                         header.addClass("alt-layout");
                     }
                 });
+                $(window).trigger("resize");
             }
         }
     });

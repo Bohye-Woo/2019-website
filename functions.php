@@ -123,7 +123,6 @@ add_action( 'widgets_init', 'bohye_widgets_init' );
 function bohye_scripts() {
 	wp_enqueue_style( 'bohye-style', get_stylesheet_uri() );
 
-	wp_enqueue_script( 'bohye-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
     wp_enqueue_script( 'bohye-main', get_template_directory_uri() . '/js/main.js', array(), '20151215', true );
 
     // Library for checking whether all images have been loaded for use with the isotope grid
