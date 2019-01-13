@@ -529,6 +529,7 @@ table {
 td {
     border-bottom: 1px solid black;
     padding: 5px 10px 5px 0;
+    line-height: 28px;
 }
 
 th {
@@ -660,7 +661,7 @@ a:hover, a:active {
     left: 0;
     right: 0;
     z-index: 10;
-    background-color: rgba(253,253,253, 0.99);
+    background-color: rgba(253, 253, 253, 0.99);
     padding: 15px 40px 15px 40px;
     width: 100%;
     border-bottom: 1px solid black;
@@ -674,7 +675,7 @@ a:hover, a:active {
     left: 0;
     right: 0;
     z-index: 5;
-    background-color: rgba(253,253,253, 0.99);
+    background-color: rgba(253, 253, 253, 0.99);
     width: 100%;
     border-bottom: 1px solid black;
     display: table;
@@ -701,6 +702,14 @@ a:hover, a:active {
     height: 55px;
     vertical-align: middle;
     border-right: 1px solid black;
+}
+
+/* Hack for making anchor tags cover the entire button */
+.mobile-menu-container li a {
+    margin-top: -18px;
+    padding-top: 18px;
+    margin-bottom: -18px;
+    padding-bottom: 18px;
 }
 
 .mobile-menu-container li:last-child {
@@ -746,6 +755,10 @@ a:hover, a:active {
     text-decoration: none;
 }
 
+.site-content {
+    padding-top: 56px;
+}
+
 /* Small menu. */
 .menu-toggle,
 .main-navigation.toggled ul {
@@ -779,6 +792,10 @@ a:hover, a:active {
     .mobile-menu-container {
         display: table;
     }
+
+    .site-content {
+        padding-top: 112px;
+    }
 }
 
 .site-main .comment-navigation, .site-main
@@ -804,7 +821,6 @@ a:hover, a:active {
 }
 
 .site-title {
-    width: 250px;
     text-decoration: none;
 }
 
@@ -824,10 +840,6 @@ a:hover, a:active {
 .nav-item .menu li {
     padding-left: 40px;
     font-size: 0.8rem;
-}
-
-.site-content {
-    padding-top: 56px;
 }
 
 /*--------------------------------------------------------------
@@ -1027,7 +1039,7 @@ a:hover, a:active {
     z-index: 8;
     opacity: 0.98;
     width: 100%;
-    background-color: rgba(253,253,253, 0.99);
+    background-color: rgba(253, 253, 253, 0.99);
     padding: 15px 40px;
 }
 
@@ -1036,6 +1048,10 @@ a:hover, a:active {
 }
 
 .post-gallery {
+    display: none;
+}
+
+.post-navigation {
     display: none;
 }
 
@@ -1055,12 +1071,14 @@ a:hover, a:active {
     }
 
     .post .orig-layout td.location {
-        display:table-cell;
+        display: table-cell;
     }
 
     .post header {
         position: relative;
         z-index: auto;
+        top: 0;
+        margin-bottom: 10px;
     }
 
     .post .grid-item {
@@ -1077,7 +1095,7 @@ a:hover, a:active {
         padding: 0;
     }
 
-    .post .post-gallery {
+    .post .post-gallery-container {
         padding: 0 40px;
     }
 }
@@ -1410,14 +1428,13 @@ body.home tr td:last-child, tr th:last-child {
     background-color: #000000;
 
     /* transition effect. not necessary */
-    transition: all .5s;
-    -webkit-transition: all .5s;
-    -moz-transition: all .5s;
-    -o-transition: all .5s;
+    transition: all .3s;
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    -o-transition: all .3s;
     margin: 0;
     line-height: 1.5;
 }
-
 
 .grid-item-desc-text {
     margin-left: auto;
@@ -1482,7 +1499,11 @@ body.home tr td:last-child, tr th:last-child {
         margin-bottom: 0;
     }
 
-    .grid-slide {
+    body.home .grid-slide {
+        padding-top: 56px;
+    }
+
+    body.home .site-content {
         padding-top: 56px;
     }
 }
@@ -1570,20 +1591,27 @@ body.home tr td:last-child, tr th:last-child {
 }
 
 /* Hide Google logo and copyright*/
-a[href^="http://maps.google.com/maps"]{display:none !important}
-a[href^="https://maps.google.com/maps"]{display:none !important}
+a[href^="http://maps.google.com/maps"] {
+    display: none !important
+}
+
+a[href^="https://maps.google.com/maps"] {
+    display: none !important
+}
 
 .gmnoprint a, .gmnoprint span, .gm-style-cc {
-    display:none;
+    display: none;
 }
+
 .gmnoprint div {
-    background:none !important;
+    background: none !important;
 }
 
 @media (max-width: 960px) {
     .about-section .col-2 {
         width: 25%;
     }
+
     .about-section .col-4 {
         width: 50%;
     }
@@ -1593,6 +1621,7 @@ a[href^="https://maps.google.com/maps"]{display:none !important}
     .about-section .column.location {
         display: none;
     }
+
     .about-section .column.row-title {
         width: 66.66666667%;
     }
@@ -1616,12 +1645,11 @@ a[href^="https://maps.google.com/maps"]{display:none !important}
     }
 
     .about-content {
-        padding-top: 94px;
+        padding-top: 122px;
     }
 }
 
-@media
-only screen and (max-width: 760px) {
+@media only screen and (max-width: 760px) {
     /* Force table to not be like tables anymore */
     table, thead, tbody, th, td, tr {
         display: block;

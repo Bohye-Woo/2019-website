@@ -69,7 +69,8 @@ get_header();
                                         <?php if (has_post_thumbnail()) {
                                             the_post_thumbnail();
                                         } ?>
-                                        <div style="background-color: <?php the_field('feature_color'); ?>" class="grid-item-desc">
+                                        <div style="background-color: <?php the_field('feature_color'); ?>"
+                                             class="grid-item-desc">
                                             <div class="grid-item-desc-text"><?php the_title(); ?></div>
                                             <div class="grid-item-year"><?php the_field('year'); ?></div>
                                         </div>

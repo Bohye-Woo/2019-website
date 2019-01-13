@@ -1,7 +1,7 @@
 jQuery(document).ready(function ($) {
     if (wp.media) {
         wp.media.view.Modal.prototype.on('close', function () {
-            setTimeout(function() { // Give the image some time to load
+            setTimeout(function () { // Give the image some time to load
                 let colorInput = $('#feature-color-picker input');
                 let featuredImageUrl = $('.editor-post-featured-image img').attr('src');
 

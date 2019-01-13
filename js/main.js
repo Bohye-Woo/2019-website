@@ -1,6 +1,5 @@
 jQuery(document).ready(function ($) {
     $(window).load(function () {
-        let mobile = false;
         let win = $(this);
         let body = $("body");
         let gridFadeInSpeed = 800;
@@ -13,18 +12,17 @@ jQuery(document).ready(function ($) {
             aboutSetup();
         }
 
-        function hideMobileMenu ($scrollContainer) {
+        function hideMobileMenu($scrollContainer) {
             let didScroll;
             let lastScrollTop = 0;
             let delta = 5;
             let navbarHeight = $('.mobile-menu-container').outerHeight();
-            console.log("hello");
-            $scrollContainer.scroll(function(event){
+
+            $scrollContainer.scroll(function (event) {
                 didScroll = true;
-                console.log("scrolling");
             });
 
-            setInterval(function() {
+            setInterval(function () {
                 if (didScroll) {
                     hasScrolled();
                     didScroll = false;
@@ -33,24 +31,15 @@ jQuery(document).ready(function ($) {
 
             function hasScrolled() {
                 let st = $scrollContainer.scrollTop();
-                console.log(st);
-
-                // Make sure they scroll more than delta
-                if(Math.abs(lastScrollTop - st) <= delta)
+                if (Math.abs(lastScrollTop - st) <= delta)
                     return;
 
-                // If they scrolled down and are past the navbar, add class .nav-up.
-                // This is necessary so you never see what is "behind" the navbar.
-                if (st > lastScrollTop && st > navbarHeight){
-                    // Scroll Down
-                    console.log("yep");
+                if (st > lastScrollTop && st > navbarHeight) {
                     $('.mobile-menu-container').addClass('move-up');
                 } else {
-                        $('.mobile-menu-container').removeClass('move-up');
+                    $('.mobile-menu-container').removeClass('move-up');
                 }
-                console.log("scrolltop_old = " + lastScrollTop);
                 lastScrollTop = st;
-                console.log("scrolltop_new = " + lastScrollTop);
             }
         }
 
@@ -59,7 +48,7 @@ jQuery(document).ready(function ($) {
             let $container = $('#nav-grid');
             $container.hide();
             $container.imagesLoaded(function () {
-                 $container.fadeIn(gridFadeInSpeed).isotope({
+                $container.fadeIn(gridFadeInSpeed).isotope({
                     itemSelector: '.grid-item',
                     layoutMode: 'masonry',
                     masonry: {
@@ -70,11 +59,10 @@ jQuery(document).ready(function ($) {
                         title: '.grid-item-desc-text',
                         year: '.grid-item-year parseInt'
                     },
-                     sortBy: 'year'
+                    sortBy: 'year'
                 });
             });
 
-            //Add the class selected to the item that is clicked, and remove from the others
             let $optionSets = $('#filters'),
                 $optionLinks = $optionSets.find('a');
 
@@ -84,11 +72,9 @@ jQuery(document).ready(function ($) {
                 if ($this.hasClass('selected')) {
                     return false;
                 }
-                let $optionSet = $this.parents('#filters');
                 $optionSets.find('.selected').removeClass('selected');
                 $this.addClass('selected');
 
-                //When an item is clicked, sort the items.
                 let selector = $(this).attr('data-filter');
                 $container.isotope({filter: selector});
 
@@ -117,10 +103,8 @@ jQuery(document).ready(function ($) {
                 }
             });
 
-            jQuery(document).ready(function ($) {
-                $(".nav-table tr").click(function () {
-                    window.location = $(this).data("href");
-                });
+            $(".nav-table tr").click(function () {
+                window.location = $(this).data("href");
             });
 
             $(window).on('resize', function () {
@@ -131,7 +115,7 @@ jQuery(document).ready(function ($) {
                     $gridSlide.unbind('scroll');
                 }
             });
-            $(window).trigger( "resize" );
+            $(window).trigger("resize");
 
             $(".sort-alpha").click(function () {
                 $container.isotope({sortBy: 'title'});
@@ -336,7 +320,7 @@ jQuery(document).ready(function ($) {
                 ];
                 let studio = {lat: 51.921383, lng: 4.504079};
                 let map = new google.maps.Map(document.getElementById('map'), {
-                    zoom: 16,
+                    zoom: 15,
                     center: studio,
                     styles: styles
                 });
@@ -355,8 +339,8 @@ jQuery(document).ready(function ($) {
 
         function postSetup() {
             let header = $(".post header");
-            let postGallery = $('.post .post-gallery');
-            postGallery.css('margin-top', header.outerHeight());
+            let postGallery = $('.post .post-gallery-container');
+            let altLayout = $('.post header').hasClass('alt-layout');
 
             let $galleryContainer = $('.post-gallery');
             $galleryContainer.imagesLoaded(function () {
@@ -370,22 +354,23 @@ jQuery(document).ready(function ($) {
                 });
             });
 
-            if ($(".post .alt-layout").length) {
-                if (win.width() <= 840) {
-                    header.removeClass("alt-layout");
-                    header.addClass("orig-layout");
+            if ($(".post .alt-layout").length && win.width() <= 840) {
+                header.removeClass("alt-layout");
+                header.addClass("orig-layout");
+            }
+
+            $(window).on('resize', function () {
+                if (win.width() <= 600) {
+                    hideMobileMenu($(this));
+                } else {
+                    $(this).unbind('scroll');
                 }
-                $(window).on('resize', function () {
-                    if (win.width() <= 600) {
-                        hideMobileMenu($(this));
-                    } else {
-                        $(this).unbind('scroll');
-                    }
-                    if (win.width() <= 760) {
-                        postGallery.css('margin-top', 60);
-                    } else {
-                        postGallery.css('margin-top', header.outerHeight());
-                    }
+                if (win.width() > 760) {
+                    postGallery.css('margin-top', header.outerHeight());
+                } else {
+                    postGallery.css('margin-top', '');
+                }
+                if (altLayout) {
                     if (win.width() <= 840) {
                         header.removeClass("alt-layout");
                         header.addClass("orig-layout");
@@ -393,9 +378,9 @@ jQuery(document).ready(function ($) {
                         header.removeClass("orig-layout");
                         header.addClass("alt-layout");
                     }
-                });
-                $(window).trigger("resize");
-            }
+                }
+            });
+            $(window).trigger("resize");
         }
     });
 });
