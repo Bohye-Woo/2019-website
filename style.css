@@ -398,7 +398,6 @@ input,
 select,
 optgroup,
 textarea {
-    color: #404040;
     font-family: "Helvetica Neue", -apple-system, system-ui, BlinkMacSystemFont, sans-serif;
     font-size: 13px;
     line-height: 1.5;
@@ -1008,6 +1007,8 @@ a:hover, a:active {
     vertical-align: top;
     padding: 0 12px 0 0;
     border: none;
+    font-weight: 500;
+    line-height: 1.5;
 }
 
 .post .orig-layout td.format {
@@ -1393,8 +1394,6 @@ body.home tr td:last-child, tr th:last-child {
 
 .grid-item {
     float: left;
-    border: .05rem solid #dadee4;
-    border-radius: .1rem;
     margin-top: 10px;
     line-height: 0;
 }
@@ -1442,7 +1441,6 @@ body.home tr td:last-child, tr th:last-child {
     position: relative;
     top: 50%;
     transform: translateY(-50%);
-    font-weight: bolder;
     font-size: 1.3rem;
     padding: 10px;
 }
@@ -1567,12 +1565,15 @@ body.home tr td:last-child, tr th:last-child {
 }
 
 .about-section {
-    border-bottom: 1px solid black;
     padding: 15px 40px;
 }
 
 .about-section .address {
     margin-top: 50px;
+}
+
+.about-section.bio {
+    border-bottom: 1px solid black;
 }
 
 .about-section #map {
@@ -1588,6 +1589,8 @@ body.home tr td:last-child, tr th:last-child {
 
 .about-section td {
     border: 0;
+    padding: 0;
+    line-height: inherit;
 }
 
 /* Hide Google logo and copyright*/
