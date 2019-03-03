@@ -989,7 +989,8 @@ a:hover, a:active {
 }
 
 .post .post-description p {
-    margin: 0;
+    margin-bottom: 1.5em;
+    margin-top: 0;
 }
 
 .post header {
@@ -1012,15 +1013,15 @@ a:hover, a:active {
 }
 
 .post .orig-layout td.format {
-    padding-left: 2px;
+    padding-left: 3px;
 }
 
 .post .orig-layout td.client {
-    padding-left: 4px;
+    padding-left: 5px;
 }
 
 .post .orig-layout td.location {
-    padding-left: 6px;
+    padding-left: 8px;
     padding-right: 0;
 }
 
