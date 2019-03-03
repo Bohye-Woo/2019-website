@@ -1400,7 +1400,7 @@ body.home tr td:last-child, tr th:last-child {
 }
 
 .home .grid-item {
-    width: calc(25% - 8px);
+    width: calc(14.28% - 9px);
 }
 
 #nav-grid {
@@ -1442,7 +1442,7 @@ body.home tr td:last-child, tr th:last-child {
     position: relative;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     padding: 10px;
 }
 
@@ -1471,17 +1471,17 @@ body.home tr td:last-child, tr th:last-child {
 
 @media (max-width: 960px) {
     .home .grid-item {
-        width: calc(33.3333333% - 7px);
+        width: calc(25% - 8px);
     }
 }
 
 @media (max-width: 760px) {
     .home .grid-item {
-        width: calc(50% - 5px);
+        width: calc(33.3333333% - 7px);
     }
 
     .grid-item .grid-item-desc-text {
-        font-size: 1.3rem;
+        font-size: 1rem;
     }
 }
 
