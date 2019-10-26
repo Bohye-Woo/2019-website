@@ -520,7 +520,6 @@ figure {
 }
 
 table {
-    margin: 0 0 1.5em;
     width: 100%;
     border-collapse: collapse;
 }
@@ -985,6 +984,7 @@ a:hover, a:active {
 
 .post .post-description {
     column-count: 4;
+    margin-top: 1.5em;
     column-gap: 12px;
 }
 
@@ -1047,6 +1047,10 @@ a:hover, a:active {
 
 .post td .hidden {
     display: none;
+}
+
+.post-gallery-container {
+    margin-top: 70px;
 }
 
 .post-gallery {
@@ -1415,17 +1419,8 @@ body.home tr td:last-child, tr th:last-child {
 }
 
 .grid-item-desc {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    color: #ffffff;
-    opacity: 0;
-    visibility: hidden;
-    text-align: center;
-    vertical-align: middle;
-    background-color: #000000;
+    color: black;
+    text-align: left;
 
     /* transition effect. not necessary */
     transition: all .3s;
@@ -1441,9 +1436,8 @@ body.home tr td:last-child, tr th:last-child {
     margin-right: auto;
     position: relative;
     top: 50%;
-    transform: translateY(-50%);
-    font-size: 1.1rem;
-    padding: 10px;
+    font-size: .8rem;
+    padding: 5px 5px 0;
 }
 
 .grid-item-year {
@@ -1457,11 +1451,6 @@ body.home tr td:last-child, tr th:last-child {
     -o-transition: all .2s;
     transform: translateX(0);
     -webkit-transform: translateX(0);
-}
-
-.grid-item:hover .grid-item-desc {
-    visibility: visible;
-    opacity: 1;
 }
 
 .grid-item:hover .wp-post-image {
